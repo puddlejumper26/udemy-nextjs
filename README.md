@@ -1,7 +1,7 @@
 # Guide
 
-- (max-next-basic)[https://github.com/puddlejumper26/udemy-nextjs#max-next-basic]
-- (max-react-recall)[https://github.com/puddlejumper26/udemy-nextjs#max-next-recall]
+- [max-next-basic](https://github.com/puddlejumper26/udemy-nextjs#max-next-basic)
+- [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-next-recall)
 
 # max-next-basic
 
@@ -40,7 +40,7 @@ export default PortfolioProjectPage;
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
@@ -68,7 +68,7 @@ export default PortfolioProjectPage;
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
@@ -141,7 +141,7 @@ export default PortfolioProjectPage;
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
@@ -176,7 +176,7 @@ function ClientProjectsPage() {
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
@@ -191,7 +191,7 @@ function ClientProjectsPage() {
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
@@ -243,7 +243,7 @@ export default Backdrop;
 
 ---
 
-(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
 
