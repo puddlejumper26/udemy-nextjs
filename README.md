@@ -1,3 +1,8 @@
+# Guide
+
+- (max-next-basic)[https://github.com/puddlejumper26/udemy-nextjs#max-next-basic]
+- (max-react-recall)[https://github.com/puddlejumper26/udemy-nextjs#max-next-recall]
+
 # max-next-basic
 
 - Udemy
@@ -6,11 +11,11 @@
 
 ================================================================
 
-# File-based routing
+## File-based routing
 
 ![file-based](https://user-images.githubusercontent.com/40550117/198136317-83a72639-5e48-45e8-8df5-2372731bc34e.png)
 
-# useRouter
+## useRouter
 
 ```javascript
 import { useRouter } from "next/router";
@@ -33,7 +38,13 @@ export default PortfolioProjectPage;
     - fetch the data with an id of `router.query.projectid`
     - and send a `request` to some BE server
 
-# […slug].js
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+## […slug].js
 
 - here `slug` could be anything / string
 - it will cover all the
@@ -55,7 +66,13 @@ export default PortfolioProjectPage;
   - so it has an array instead of just a string,
   - contains `asdwf` and `2` which compose the url
 
-# Navigating Between Pages
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+## Navigating Between Pages
 
 - Old way
   ```jsx
@@ -122,7 +139,13 @@ export default PortfolioProjectPage;
   }}
   ```
 
-# router.push() / router.replace() - navigate programmatically
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+## router.push() / router.replace() - navigate programmatically
 
 ```jsx
 function ClientProjectsPage() {
@@ -151,7 +174,13 @@ function ClientProjectsPage() {
   });
   ```
 
-# 404 page
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+## 404 page
 
 - under `pages` folder
 - name has to be `404.js`
@@ -159,3 +188,87 @@ function ClientProjectsPage() {
 - then next.js will find it automatically
 
 ![Screenshot 2022-10-26 at 22.45.32.png](https://user-images.githubusercontent.com/40550117/198136559-3e4cdb71-099e-48ed-814d-da1afbd6a565.png)
+
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+# max-react-recall
+
+## state
+
+```jsx
+// inside of component Todo
+function Todo() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function deleteHandler() {
+    setModalIsOpen(true);
+  }
+  function closeModalHandler() {
+    setModalIsOpen(false);
+  }
+  function confirmDelete(){}
+  return (
+    <div>
+      <h2>Card</h2>
+      <button onClick={deleteHanlder}>Delete</button>
+      {modalIsOpen && <Modal onCancel={closeModalHandler} onConfirm={confirmDelete}/>}
+      {modalIsOpen && <Backdrop onCancel={closeModalHandler} />}
+    </div>
+  );
+}
+export default Todo;
+
+// inside of component Modal ==> when user clicks delete button, this component pops up
+function Modal(props) {
+  return (
+    <div>
+      <button onClick={props.onCancel}>cancel</button>
+      <button onClick={props.onConfirm}>confirm</button>
+    </div>
+  );
+}
+export default Modal;
+
+// inside of component Backdrop ==> when user clicks delete button, this component provides with darker background, with above Modal component, so when user clicks this component again, should return to the Todo component
+function Backdrop(props){
+  return<div onClick={props.onCancel}/>
+}
+export default Backdrop;
+
+```
+
+---
+
+(UP_TO_TOP)[https://github.com/puddlejumper26/udemy-nextjs#guide]
+
+---
+
+## wrapping
+
+```jsx
+  //Inside of component B
+  function B(){
+    return ({
+      <A>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </A>
+    })
+  }
+  export default B;
+
+  //Inside of component A
+  function A(props){
+    return
+      <div>
+        <main>{props.children}</main>
+      </div>
+  }
+  export default A;
+
+```
