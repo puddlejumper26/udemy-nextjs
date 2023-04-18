@@ -1,7 +1,7 @@
 # Guide
 
 - [max-next-basic](https://github.com/puddlejumper26/udemy-nextjs#max-next-basic)
-- [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-next-recall)
+- [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-react-recall)
 
 # max-next-basic
 
@@ -44,7 +44,7 @@ export default PortfolioProjectPage;
 
 ---
 
-## […slug].js
+## […slug].js -- catch all router
 
 - here `slug` could be anything / string
 - it will cover all the
@@ -272,3 +272,57 @@ export default Backdrop;
   export default A;
 
 ```
+
+## Form/useRef
+
+`useRef` is for `reading` value
+`useState` is for `changing` value
+
+```jsx
+function MeetUpForm() {
+  const titleInputRef = useRef();
+  const imageInputRef = useRef();
+  const addressInputRef = useRef();
+  const descriptionInputRef = useRef();
+
+  function submitHandler(event) {
+    event.preventDefault();
+
+    const enteredTitle = titleInputRef.current.value;
+    const enteredImage = imageInputRef.current.value;
+    const enteredAddress = addressInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
+
+    fire;
+  }
+
+  return (
+    <Card>
+      <form onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="title">Meetup Title</label>
+          <input type="text" required id="title" ref={titleInputRef} />
+        </div>
+        <div>
+          <label htmlFor="image">Meetup Image</label>
+          <input type="url" required id="image" />
+        </div>
+        <div>
+          <label htmlFor="address">Meetup address</label>
+          <input type="text" required id="address" />
+        </div>
+        <div>
+          <label htmlFor="description">Meetup Description</label>
+          <textarea type="text" id="description"></textarea>
+        </div>
+        <div>
+          <button>Add Meetup</button>
+        </div>
+      </form>
+    </Card>
+  );
+}
+export default MeetUpForm;
+```
+
+# [Project] working with file-based routing
