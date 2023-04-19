@@ -2,6 +2,7 @@
 
 - [max-next-basic](https://github.com/puddlejumper26/udemy-nextjs#max-next-basic)
 - [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-react-recall)
+- [max-working-with-file-based-routing](https://github.com/puddlejumper26/udemy-nextjs#project-working-with-file-based-routing)
 
 # max-next-basic
 
@@ -326,3 +327,13 @@ export default MeetUpForm;
 ```
 
 # [Project] working with file-based routing
+
+## Planning the project
+
+![Screenshot 2023-04-19 at 09 27 58](https://user-images.githubusercontent.com/40550117/233000830-854e6e58-4416-4b84-b772-fd817656de47.png)
+
+## Public folder
+
+- is a special folder, that servered statically by Next.js
+- can be used directly in the project
+- Files and folders stored outside of public folder are NOT made accessible by NextJS, can not load files from there
