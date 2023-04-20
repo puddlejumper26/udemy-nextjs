@@ -4,6 +4,17 @@
 - [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-react-recall)
 - [max-working-with-file-based-routing](https://github.com/puddlejumper26/udemy-nextjs#project-working-with-file-based-routing)
 
+# next js features
+
+- File based routing
+  ![file-based](https://user-images.githubusercontent.com/40550117/198136317-83a72639-5e48-45e8-8df5-2372731bc34e.png)
+
+- Pre-rendering
+  ![Screenshot 2023-04-20 at 14 21 10](https://user-images.githubusercontent.com/40550117/233364209-b40b270f-616e-4707-9bae-b3f09e184adf.png)
+
+- Advantages & Disadvantages
+  https://radixweb.com/blog/nextjs-vs-react#advantages
+
 # max-next-basic
 
 - Udemy
