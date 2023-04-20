@@ -326,14 +326,179 @@ function MeetUpForm() {
 export default MeetUpForm;
 ```
 
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
 # [Project] working with file-based routing
 
 ## Planning the project
 
 ![Screenshot 2023-04-19 at 09 27 58](https://user-images.githubusercontent.com/40550117/233000830-854e6e58-4416-4b84-b772-fd817656de47.png)
 
+## Strucutre && Knowledge
+
+- Filter form
+- <Link>
+- General Layout -> seperate header/footer from main/body components
+
 ## Public folder
 
 - is a special folder, that servered statically by Next.js
 - can be used directly in the project
 - Files and folders stored outside of public folder are NOT made accessible by NextJS, can not load files from there
+
+## Filter logics
+
+```jsx
+function EventsSearch(props) {
+  const yearInputRef = useRef();
+  const monthInputRef = useRef();
+
+  function submitHandler(event) {
+    event.preventDefault();
+
+    const selectedYear = yearInputRef.current.value;
+    const selectedMonth = monthInputRef.current.value;
+
+    props.onSearch(selectedYear, selectedMonth);  <==== onSearch
+  }
+
+  return (
+    <form className={classes.form} onSubmit={submitHandler}> <===== onSubmit
+      <div className={classes.controls}>
+        <div className={classes.control}>
+          <label htmlFor="year">Year</label>
+          <select id="year" ref={yearInputRef}>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="month">Month</label>
+          <select id="month" ref={monthInputRef}>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">Septemer</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+      </div>
+      <Button>Find Events</Button>
+    </form>
+  );
+}
+
+export default EventsSearch;
+```
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
+```jsx
+function AllEventsPage() {
+  const router = useRouter();
+  const events = getAllEvents();
+
+  function findEventsHandler(year, month) {
+    const fullPath = `/events/${year}/${month}`;
+
+    router.push(fullPath); //go to different pages  <===
+  }
+
+  return (
+    <Fragment>
+      <EventsSearch onSearch={findEventsHandler} /> <==== onSearch
+      <EventList items={events} />
+    </Fragment>
+  );
+}
+
+export default AllEventsPage;
+```
+
+```jsx
+function FilteredEventsPage() {
+  const router = useRouter();
+
+  const filterData = router.query.slug; <==== slug
+
+  if (!filterData) {
+    return <p className="center">Loading...</p>;
+  }
+
+  const filteredYear = filterData[0];
+  const filteredMonth = filterData[1];
+
+  const numYear = +filteredYear;
+  const numMonth = +filteredMonth;
+
+  if (
+    isNaN(numYear) ||
+    isNaN(numMonth) ||
+    numYear > 2030 ||
+    numYear < 2021 ||
+    numMonth < 1 ||
+    numMonth > 12
+  ) {
+    return (
+      <Fragment>
+        <ErrorAlert>
+          <p>Invalid filter. Please adjust your values!</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show All Events</Button>
+        </div>
+      </Fragment>
+    );
+  }
+
+  const filteredEvents = getFilteredEvents({
+    year: numYear,
+    month: numMonth,
+  });
+
+  if (!filteredEvents || filteredEvents.length === 0) {
+    return (
+      <Fragment>
+        <ErrorAlert>
+          <p>No events found for the chosen filter!</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show All Events</Button>
+        </div>
+      </Fragment>
+    );
+  }
+
+  const date = new Date(numYear, numMonth - 1);
+
+  return (
+    <Fragment>
+      <ResultsTitle date={date} />
+      <EventList items={filteredEvents} />
+    </Fragment>
+  );
+}
+
+export default FilteredEventsPage;
+```
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
