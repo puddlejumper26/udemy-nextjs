@@ -341,7 +341,7 @@ export default MeetUpForm;
 ## Strucutre && Knowledge
 
 - Filter form
-- <Link>
+- < Link >
 - General Layout -> seperate header/footer from main/body components
 
 ## Public folder
