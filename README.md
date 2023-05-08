@@ -513,3 +513,133 @@ export default FilteredEventsPage;
 [UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
 
 ---
+
+# Pre-rendering & Data Fetching
+
+## getStaticProps
+
+- For pre-rendering page, it means
+- - there are certian page/pages pre-rendered
+- - how do we tell nextjs which data is needed for pre-rendering?
+- - using this specific function
+- - - `export async function getStaticProps(context){...}`
+- - - and only using it from inside `page` component
+- - - could run any code that normally run on the server side only
+- - - these code will not be compiled into bundles, which will not be sent to client side
+- - 执行的时间
+- - - `npm run build`
+- - - - （SSG） - static site generation
+- - - - (ISR) Nextjs 本身的 built-in features - `Incremental static Generation` - 会持续 build - 以保证数据的及时更新
+- - - - ![Screenshot 2023-04-24 at 09 46 36](https://user-images.githubusercontent.com/40550117/233932071-7d099e00-82b3-447d-a090-68c6f84aa271.png)
+
+## fs, path, cwd
+
+```jsx
+import fs from "fs";
+import path from "path";
+
+async function getStaticProps(context) {
+  // to the root, then go to the data folder, then dummy-backend.json filepray
+  const filePath = path.join(process.cwd(), "data", "/dummy-backend.json");
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
+
+  if(!data){
+    return {
+      redirect:{
+        destination: '/no-data' <===== 直接转到另外一个网页
+      }
+    }
+  }
+
+  if(data.products.length === 0){
+    return {
+      notFound: true <=====  这样这个网页就会直接  404
+    }
+  }
+
+  return {
+    props:{
+      products: data.products;
+    },
+    revalidate: 120  <==== Incremental static every 2 mins it will be rebuilt, important in Production
+    Generation:
+  };
+}
+```
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
+## 问题
+
+- 如果是一个简单的 blog，那么使用 static 是没有问题的，没有太多的数据交互
+- 如果数据交互很多就可以同时
+- - pre-rendering - 用来提前 render 好旧的数据
+- - react 的本身的 fetch data，来获取新的数据，并在数据到达之后，更新网页
+- `getStaticProps` 如果加在 [pid].js 也就是 dynamic page 的文件中，那么就会有问题
+- - 因为 `getStaticProps` 是要 react 去 pre-render 这个页面
+- - 但是因为现在是 dynamic，所以无法 pre-render
+- - 那么这个时候就需要 `getStaticPaths` - to tell react which instance/path should be pre-rendered
+    ![Screenshot 2023-05-09 at 00 19 04](https://user-images.githubusercontent.com/40550117/236950222-bbb2e081-b184-45f4-af96-1f2a124e9ed0.png)
+
+## getStaticPaths
+
+```jsx
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { pid: "p1" } },   =====> 这样react 就会 call getStaticProps 3 次，with different ids
+      { params: { pid: "p2" } },   =====>
+      { params: { pid: "p3" } },   =====>
+    ],
+    fallback: true  =====> 如何render 的网页有很多的paths，这样如果上面的paths没有p2 p3，那么也是p2p3就是render in time
+      // 目的是为了节约资源，因为有的网页的访问量很低
+      // 但是这样就就要在 ProductionDetailPage中 加上 if(!loadedProduct){return <p>Loading....</p>}
+      // 并且最好加上 if(!products){return {notFound: true}} 这样如果输入一个不存在的网页会跳转404而不是报错
+    fallback: 'blocking' ======> 不需要加上`loading·..`的那一段，就是render起来需要一些时间，但是不会报错
+    fallback: false =====> 是所有的paths 都在 上面
+  };
+}
+```
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
+## getServerSideProps
+
+sometimes, only static render is not enough, if we need to pre-render a page, for every incoming request, or need access to the concrete request object that is reaching the server. e.g. high dynamic page,
+
+- - runs on the `server` only
+- - re-excute for every incoming request
+- - should only use either `getServerSideProps` or `getStaticProps`
+- - it has context object as parameter, which makes us getting access to full request, so we can manipulate the response
+- - `export async function getServerSideProps(context){ const {params, req, res} = context}`
+
+```jsx
+export async function getServerSideProps(context) {
+  const { params, req, res } = context;
+  const userId = params.uid;
+  return {
+    props: {
+      id: "userid -" + userId,
+    },
+  };
+}
+```
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
+## Client-side data fetching
+
+![Screenshot 2023-05-09 at 00 19 50](https://user-images.githubusercontent.com/40550117/236950327-52f4eb23-8ed9-4909-a55e-a6646273e33e.png)
