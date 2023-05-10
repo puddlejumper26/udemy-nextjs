@@ -3,6 +3,11 @@
 - [max-next-basic](https://github.com/puddlejumper26/udemy-nextjs#max-next-basic)
 - [max-react-recall](https://github.com/puddlejumper26/udemy-nextjs#max-react-recall)
 - [max-working-with-file-based-routing](https://github.com/puddlejumper26/udemy-nextjs#project-working-with-file-based-routing)
+- - [Pre-rendering & Data Fetching](https://github.com/puddlejumper26/udemy-nextjs#pre-rendering--data-fetching)
+- - - [getStaticProps](https://github.com/puddlejumper26/udemy-nextjs#getstaticprops)
+- - - [getStaticPaths](https://github.com/puddlejumper26/udemy-nextjs#getstaticpaths)
+- - - [getServerSideProps](https://github.com/puddlejumper26/udemy-nextjs#getserversideprops)
+- - - [Client-side data fetching](https://github.com/puddlejumper26/udemy-nextjs#client-side-data-fetching)
 
 # next js features
 
@@ -518,6 +523,7 @@ export default FilteredEventsPage;
 
 ## getStaticProps
 
+- https://github.com/mschwarzmueller/nextjs-course-code/blob/04-data-fetching/pages/products/%5Bpid%5D.js
 - For pre-rendering page, it means
 - - there are certian page/pages pre-rendered
 - - how do we tell nextjs which data is needed for pre-rendering?
@@ -574,7 +580,7 @@ async function getStaticProps(context) {
 
 ---
 
-## 问题
+### 问题
 
 - 如果是一个简单的 blog，那么使用 static 是没有问题的，没有太多的数据交互
 - 如果数据交互很多就可以同时
@@ -621,6 +627,7 @@ sometimes, only static render is not enough, if we need to pre-render a page, fo
 - - should only use either `getServerSideProps` or `getStaticProps`
 - - it has context object as parameter, which makes us getting access to full request, so we can manipulate the response
 - - `export async function getServerSideProps(context){ const {params, req, res} = context}`
+- https://github.com/mschwarzmueller/nextjs-course-code/blob/04-data-fetching/pages/%5Buid%5D.js
 
 ```jsx
 export async function getServerSideProps(context) {
@@ -643,3 +650,17 @@ export async function getServerSideProps(context) {
 ## Client-side data fetching
 
 ![Screenshot 2023-05-09 at 00 19 50](https://user-images.githubusercontent.com/40550117/236950327-52f4eb23-8ed9-4909-a55e-a6646273e33e.png)
+
+## useSWR
+
+- a hook
+- send `http` request
+- - `npm install swr`
+- - - before
+      ![Screenshot 2023-05-10 at 00 14 09](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/ee879d43-860e-4400-85c6-235e6daa68db)
+      ![Screenshot 2023-05-10 at 00 15 41](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/5c23fcb0-e518-431b-91c6-8f3b248e0e24)
+- - - now
+      ![Screenshot 2023-05-10 at 00 16 12](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/bae32b43-08ad-4faa-9fdc-acfd3124d3fb)
+      ![Screenshot 2023-05-10 at 00 16 51](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/e09c6564-a43f-4c76-9917-d412971e60bc)
+- - - - bring back the state
+        ![Screenshot 2023-05-10 at 00 18 36](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/5e766af6-ba5d-4af2-9172-74d76dc8287b)
