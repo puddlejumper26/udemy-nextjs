@@ -1,6 +1,7 @@
-import Button from "../ui/button";
-import classes from "./events-search.module.css";
-import { useRef } from "react";
+import { useRef } from 'react';
+
+import Button from '../ui/button';
+import classes from './events-search.module.css';
 
 function EventsSearch(props) {
   const yearInputRef = useRef();
@@ -9,37 +10,37 @@ function EventsSearch(props) {
   function submitHandler(event) {
     event.preventDefault();
 
-    const selecteYear = yearInputRef.current.value;
-    const selecteMonth = monthInputRef.current.value;
+    const selectedYear = yearInputRef.current.value;
+    const selectedMonth = monthInputRef.current.value;
 
-    props.onSearch(selecteYear, selecteMonth);
+    props.onSearch(selectedYear, selectedMonth);    
   }
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <div className={classes.controls}>
         <div className={classes.control}>
-          <label htmlFor="year">Year</label>
-          <select ref={yearInputRef}>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
+          <label htmlFor='year'>Year</label>
+          <select id='year' ref={yearInputRef}>
+            <option value='2021'>2021</option>
+            <option value='2022'>2022</option>
           </select>
         </div>
         <div className={classes.control}>
-          <label htmlFor="month">Month</label>
-          <select id="month" ref={monthInputRef}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
+          <label htmlFor='month'>Month</label>
+          <select id='month' ref={monthInputRef}>
+            <option value='1'>January</option>
+            <option value='2'>February</option>
+            <option value='3'>March</option>
+            <option value='4'>April</option>
+            <option value='5'>May</option>
+            <option value='6'>June</option>
+            <option value='7'>July</option>
+            <option value='8'>August</option>
+            <option value='9'>Septemer</option>
+            <option value='10'>October</option>
+            <option value='11'>November</option>
+            <option value='12'>December</option>
           </select>
         </div>
       </div>

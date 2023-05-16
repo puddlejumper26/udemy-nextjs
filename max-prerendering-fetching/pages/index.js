@@ -1,44 +1,23 @@
-import Link from "next/link";
-import { getFeaturedEvents } from "../helpers/api-utils";
-import EventList from "../components/events/event-list";
-import styles from "../styles/Home.module.css";
+import { getFeaturedEvents } from '../helpers/api-util';
+import EventList from '../components/events/event-list';
 
-export default function HomePage(props) {
-  const { events } = props;
-  // console.log("01-HomePage - events - ", events);
-  const featuredEvents = getFeaturedEvents(events);
-
+function HomePage(props) {
   return (
     <div>
-      This is the Home Page
-      <EventList items={featuredEvents} />
+      <EventList items={props.events} />
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    "https://nextjs-practice-max-02-default-rtdb.firebaseio.com/events.json"
-  );
+  const featuredEvents = await getFeaturedEvents();
 
-  const data = await res.json();
-  const featuredEvents = [];
-  for (const key in data) {
-    featuredEvents.push({
-      id: key,
-      date: data[key].date,
-      description: data[key].description,
-      image: data[key].image,
-      location: data[key].location,
-      title: data[key].title,
-      isFeatured: data[key].isFeatured,
-    });
-  }
-
-  // const featuredEvents = await getFeaturedEvents();
   return {
     props: {
-      events: featuredEvents,
+      events: featuredEvents
     },
-  };
+    revalidate: 1800
+  }
 }
+
+export default HomePage;
