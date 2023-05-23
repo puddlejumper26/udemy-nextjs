@@ -8,6 +8,7 @@
 - - - [getStaticPaths](https://github.com/puddlejumper26/udemy-nextjs#getstaticpaths)
 - - - [getServerSideProps](https://github.com/puddlejumper26/udemy-nextjs#getserversideprops)
 - - - [Client-side data fetching](https://github.com/puddlejumper26/udemy-nextjs#client-side-data-fetching)
+- [max-optimization]
 
 # next js features
 
@@ -664,3 +665,37 @@ export async function getServerSideProps(context) {
       ![Screenshot 2023-05-10 at 00 16 51](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/e09c6564-a43f-4c76-9917-d412971e60bc)
 - - - - bring back the state
         ![Screenshot 2023-05-10 at 00 18 36](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/5e766af6-ba5d-4af2-9172-74d76dc8287b)
+
+# Optimization Next.js
+
+## Head
+
+- Hard Code
+
+![Screenshot 2023-05-23 at 09 44 03](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/f15a04c4-793d-470b-9435-c329ff6f1d03)
+注意这里的 `Head`
+和网页中的代码
+这样对于 SEO 是非常有利的
+![Screenshot 2023-05-23 at 09 43 36](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/f3ec8ce9-520a-4925-b095-cc85e1e0be3c)
+
+- Dynamic Head
+  ![Screenshot 2023-05-23 at 09 48 46](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/01d31e3c-5a44-41cd-8574-ac300e63d5f7)
+- - 另外一种方式
+    ![Screenshot 2023-05-23 at 09 52 11](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/372c3dc8-dc6e-4b91-a644-b803a941988a)
+
+- \_app.js file
+- - has to be added under `page foler`
+    we could set `Head` in different files with different values, but the latter rendered file/page will overwrite the value, to be displayed
+
+- \_document.js file
+- - has to be added under `page folder`
+- - add html element outside of the component tree
+    注意这里的 Head 和之前的 Head 不同，这里的只用于 Document file
+    ![Screenshot 2023-05-23 at 10 03 16](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/d64f9c8e-af4f-4e70-9a96-ae4a4d0c9ad1)
+
+- image size
+- - `import Image from 'next/image'`
+- - - original `<img src={'/' + image} alt={title}>`
+- - - optimized `<IMAGE src={'/' + image} alt={title} width={340} height={160}>`
+
+- API routes
