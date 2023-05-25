@@ -716,3 +716,7 @@ export default handler;
 
 - - then on browser
     ![Screenshot 2023-05-24 at 23 25 35](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/f8682c8d-e45e-48d2-a6c2-4c1045615999)
+
+- getStaticProps()
+- - `fetch()` could be used to get data from outside server
+- - `fetch()` should not be used to fetch data from inside server, e.g. `data/feedback.json` here
