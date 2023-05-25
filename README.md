@@ -698,4 +698,21 @@ export async function getServerSideProps(context) {
 - - - original `<img src={'/' + image} alt={title}>`
 - - - optimized `<IMAGE src={'/' + image} alt={title} width={340} height={160}>`
 
-- API routes
+# API routes (Backend code)
+
+- folder has to be called `api` under `pages` folder
+- - server side code, will not be exposed to client side
+- - frontend code, e.g. form, should connect to `API routes`,
+- - then inside `API routes`, connect to database, which will be more safe
+- -
+
+```js
+function handler(req, res) {
+  res.status(200).json({ message: "This works!" });
+}
+
+export default handler;
+```
+
+- - then on browser
+    ![Screenshot 2023-05-24 at 23 25 35](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/f8682c8d-e45e-48d2-a6c2-4c1045615999)
