@@ -720,3 +720,28 @@ export default handler;
 - getStaticProps()
 - - `fetch()` could be used to get data from outside server
 - - `fetch()` should not be used to fetch data from inside server, e.g. `data/feedback.json` here
+
+================================================================
+
+# Render markdown text in react
+
+- npm install react-markdown
+- ```jsx
+  import ReactMarkdown from "react-markdown";
+  const DUMMY_POST = {
+    slug: "get-featured-posts4",
+    title: "Get featured posts4",
+    image: "get-featured-post.jpeg",
+    date: "2023-05-40",
+    content: "# this is the first featured post",
+  };
+
+  function PostContent() {
+    return (
+      <article>
+        <ReactMarkdown>{DUMMY_POST.content}</ReactMarkdown>
+      </article>
+    );
+  }
+  export default PostContent;
+  ```
