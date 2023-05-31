@@ -23,9 +23,11 @@ function HomePage() {
   }
 
   function loadFeedbackHandler() {
+    console.log("loadFeedback handler");
     fetch("/api/feedback")
       .then((response) => response.json())
       .then((data) => {
+        console.log("data in loadFeedback handler", data.feedback);
         setFeedbackItems(data.feedback);
       });
   }
@@ -45,10 +47,10 @@ function HomePage() {
         />
         <button>Submit</button>
       </form>
-      <hr />
+      {/* <hr></hr> */}
       <button onClick={loadFeedbackHandler}>Load feedback</button>
       <ul>
-        {feedbackItems.map((item) => (
+        {feedbackItems?.map((item) => (
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
