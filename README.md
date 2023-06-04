@@ -723,7 +723,7 @@ export default handler;
 
 ================================================================
 
-# Render markdown text in react
+## Render markdown text in react
 
 - npm install react-markdown
 - ```jsx
@@ -745,3 +745,5 @@ export default handler;
   }
   export default PostContent;
   ```
+
+## ReactMarkdown to render pics
