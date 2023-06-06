@@ -1,4 +1,6 @@
-function handler(req, res) {
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+async function handler(req, res) {
   if (req.method === "POST") {
     const { email, name, message } = req.body;
 
@@ -22,7 +24,37 @@ function handler(req, res) {
       message,
     };
 
-    console.log(newMessage);
+    console.log("newMessage", newMessage);
+
+    // let client;
+
+    // try {
+    //   client = await MongoClient.connect(
+    //     "mongodb+srv://test:test@cluster0.wiqhu.mongodb.net/?retryWrites=true&w=majority"
+    //   );
+    // } catch (error) {
+    //   res.status(500).json({ error: error });
+    //   console.log("connecting error");
+    //   return;
+    // }
+
+    const uri =
+      "mongodb+srv://admin:ZqJ02cA3qXnd0qlK@maxapp.18jge43.mongodb.net/Messages?retryWrites=true&w=majority";
+    const client = new MongoClient(uri);
+    // console.log("client -", client);
+    const db = client.db();
+    try {
+      console.log("db connect");
+      // const result = await db.collection("messages").find({}).toArray();
+
+      const result = await db.collection("messages").insertOne(newMessage);
+      console.log("result:", result);
+      newMessage.id = result.insertedId;
+    } catch (error) {
+      console.log("collection error");
+      res.status(500).json({ error: error });
+      return;
+    }
 
     res
       .status(201) //请求已经被成功处理，并且创建了新的资源
