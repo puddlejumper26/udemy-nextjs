@@ -48,7 +48,7 @@ async function handler(req, res) {
       // const result = await db.collection("messages").find({}).toArray();
 
       const result = await db.collection("messages").insertOne(newMessage);
-      console.log("result:", result);
+      // console.log("result:", result);
       newMessage.id = result.insertedId;
     } catch (error) {
       console.log("collection error");
