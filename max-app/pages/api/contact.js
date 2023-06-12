@@ -38,8 +38,7 @@ async function handler(req, res) {
     //   return;
     // }
 
-    const uri =
-      "mongodb+srv://admin:ZqJ02cA3qXnd0qlK@maxapp.18jge43.mongodb.net/Messages?retryWrites=true&w=majority";
+    const uri = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.18jge43.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
     const client = new MongoClient(uri);
     // console.log("client -", client);
     const db = client.db();

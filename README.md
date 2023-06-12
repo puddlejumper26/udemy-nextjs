@@ -746,4 +746,22 @@ export default handler;
   export default PostContent;
   ```
 
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
 ## ReactMarkdown to render pics
+
+https://github.com/puddlejumper26/udemy-nextjs/commit/87728fef7fe9f5bef96d763eed548fc909e3fe2a
+
+================================================================
+
+# Deployment
+
+![Screenshot 2023-06-12 at 06 20 44](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/11bce7a0-213b-48fd-9b44-6e0a0debeb80)
+
+![Screenshot 2023-06-12 at 06 24 08](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/32e186cd-b502-4c43-8c5d-15d6e6b67134)
+
+- next.config.js file
