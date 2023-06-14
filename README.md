@@ -8,7 +8,11 @@
 - - - [getStaticPaths](https://github.com/puddlejumper26/udemy-nextjs#getstaticpaths)
 - - - [getServerSideProps](https://github.com/puddlejumper26/udemy-nextjs#getserversideprops)
 - - - [Client-side data fetching](https://github.com/puddlejumper26/udemy-nextjs#client-side-data-fetching)
-- [max-optimization]
+- [max-optimization](https://github.com/puddlejumper26/udemy-nextjs#optimization-nextjs)
+- [max-API-routes](https://github.com/puddlejumper26/udemy-nextjs#api-routes-backend-code)
+- - [Render MD in React](https://github.com/puddlejumper26/udemy-nextjs#render-markdown-text-in-react)
+- [max-Deployment](https://github.com/puddlejumper26/udemy-nextjs#deployment)
+- [max-Auth]()
 
 # next js features
 
@@ -666,6 +670,12 @@ export async function getServerSideProps(context) {
 - - - - bring back the state
         ![Screenshot 2023-05-10 at 00 18 36](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/5e766af6-ba5d-4af2-9172-74d76dc8287b)
 
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
+
 # Optimization Next.js
 
 ## Head
@@ -765,3 +775,24 @@ https://github.com/puddlejumper26/udemy-nextjs/commit/87728fef7fe9f5bef96d763eed
 ![Screenshot 2023-06-12 at 06 24 08](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/32e186cd-b502-4c43-8c5d-15d6e6b67134)
 
 - next.config.js file
+
+# Authentication
+
+![Screenshot 2023-06-13 at 09 58 11](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/46ff1ffd-0b08-4136-98c2-9234ba5bd05e)
+
+![Screenshot 2023-06-13 at 09 59 24](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/aacb2733-7237-441e-8a0b-9b9e5beaaf7b)
+
+![Screenshot 2023-06-13 at 10 00 31](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/01ee5907-d30e-453b-88d1-e1be8cefd54a)
+
+![Screenshot 2023-06-13 at 10 01 04](https://github.com/puddlejumper26/udemy-nextjs/assets/40550117/42ce6424-896f-4b91-95a6-ba6ef9a3e842)
+
+## Process （JSON Web Token,JWT）
+
+- CLIENT 发送 数据 SERVER
+- SERVER 不 保存数据，而是，生成一个 Token
+- SERVER 把这个 Token 发送回给 CLIENT
+- CLIENT 可以保存这个 TOKEN，然后之后每一次重新发起 Request 的时候，都需要同时发送这个 TOKEN
+- SERVER 在接受的时候会进行验证
+- - 如果正确，发送回所需要的信息
+
+https://www.youtube.com/watch?v=K6pwjJ5h0Gg&ab_channel=Udacity
