@@ -17,11 +17,11 @@ async function handler(req, res) {
       res.status(422).json({ message: "Invalid input" });
       return;
     }
-    const hashedPassword = hashPassword(password);
+    const hashedPassword = await hashPassword(password);
     // store in the database
     const newMessage = {
       email,
-      password,
+      password: hashedPassword,
     };
     console.log("newMessage", newMessage);
 

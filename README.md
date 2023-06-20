@@ -12,7 +12,7 @@
 - [max-API-routes](https://github.com/puddlejumper26/udemy-nextjs#api-routes-backend-code)
 - - [Render MD in React](https://github.com/puddlejumper26/udemy-nextjs#render-markdown-text-in-react)
 - [max-Deployment](https://github.com/puddlejumper26/udemy-nextjs#deployment)
-- [max-Auth]()
+- [max-Auth](https://github.com/puddlejumper26/udemy-nextjs#authentication)
 
 # next js features
 
