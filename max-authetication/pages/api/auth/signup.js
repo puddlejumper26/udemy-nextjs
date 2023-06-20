@@ -23,12 +23,19 @@ async function handler(req, res) {
       email,
       password: hashedPassword,
     };
-    console.log("newMessage", newMessage);
+    // console.log("newMessage", newMessage);
 
     const uri = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.18jge43.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
     const client = new MongoClient(uri);
     // console.log("client -", client);
     const db = client.db();
+
+    const existedUser = await db.collection("users").findOne({ email: email });
+    if (existedUser) {
+      res.status(422).json({ message: "User already existed" });
+      client.close();
+      return;
+    }
 
     console.log("db -", db);
     try {
