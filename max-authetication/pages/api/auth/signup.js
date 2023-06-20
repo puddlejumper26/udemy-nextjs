@@ -1,10 +1,10 @@
 import { MongoClient } from "mongodb";
 import { hashPassword } from "../../../lib/auth";
+import { connectToDatabase } from "../../../lib/db";
 
 async function handler(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
-    console.log("password 1- ", password);
 
     if (
       !email ||
@@ -25,9 +25,7 @@ async function handler(req, res) {
     };
     // console.log("newMessage", newMessage);
 
-    const uri = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.18jge43.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
-    const client = new MongoClient(uri);
-    // console.log("client -", client);
+    const client = await connectToDatabase();
     const db = client.db();
 
     const existedUser = await db.collection("users").findOne({ email: email });
@@ -48,9 +46,6 @@ async function handler(req, res) {
       return;
     }
     // console.log("db connect");
-
-    // const result = await db.collection("users").insertOne(newMessage);
-    // console.log("result:", result);
 
     res
       .status(201) //请求已经被成功处理，并且创建了新的资源
