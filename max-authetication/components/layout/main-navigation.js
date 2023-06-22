@@ -1,12 +1,17 @@
 import Link from "next/link";
-import { useSession } from "next-auth/client";
+import { useSession, signOut } from "next-auth/client";
 
 import classes from "./main-navigation.module.css";
 
 function MainNavigation() {
   const [session, loading] = useSession();
-  console.log("Loading", loading);
-  console.log("Session", session);
+  // console.log("Loading", loading);
+  // console.log("Session", session);
+
+  function logoutHandler() {
+    // here the signOut() method will remove the session-token from local storage Cookies
+    signOut();
+  }
 
   return (
     <header className={classes.header}>
@@ -29,7 +34,7 @@ function MainNavigation() {
           )}
           {session && (
             <li>
-              <button>Logout</button>
+              <button onClick={logoutHandler}>Logout</button>
             </li>
           )}
         </ul>
