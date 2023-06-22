@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
+import { signIn } from "next-auth/client";
+
 import classes from "./auth-form.module.css";
 
 async function createUser(email, password) {
-  console.log("Creating user");
+  // console.log("Creating user");
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     body: JSON.stringify({ email, password }),
@@ -10,7 +12,7 @@ async function createUser(email, password) {
   });
 
   const data = await response.json();
-  console.log("User created data: " + data);
+  // console.log("User created data: " + data);
 
   if (!response.ok) {
     console.log("Error creating user", response);
@@ -36,11 +38,19 @@ function AuthForm() {
     const enteredPassword = passwordInputRef.current.value;
 
     if (isLogin) {
+      // [...nextauth].js 中的 credentials
+      // 下面的object会被作为Argument传入[...nextauth].js中的authorize
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      console.log("AuthForm result - ", result);
     } else {
       try {
-        console.log("Entering-" + enteredEmail);
+        // console.log("Entering-" + enteredEmail);
         const result = await createUser(enteredEmail, enteredPassword);
-        console.log("result: " + result);
+        // console.log("result: " + result);
       } catch (error) {
         console.log("auth-form-error - ", error);
       }

@@ -1,13 +1,18 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
+import { connectToDatabase } from "../../../lib/db";
 
 export default NextAuth({
   // how the session for an authenticated user will be managed
-  session: { jwt: true },
+  session: { strategy: "jwt" },
   providers: [
-    Provider.Credentials({
-      async authorize(credentials) {
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {},
+      async authorize(credentials, req) {
+        console.log("authorization  ");
         const client = await connectToDatabase();
         const userCollection = client.db().collection("users");
         const user = await userCollection.findOne({ email: credentials.email });

@@ -35,7 +35,7 @@ async function handler(req, res) {
       return;
     }
 
-    console.log("db -", db);
+    // console.log("db -", db);
     try {
       console.log("db connect");
       const result = await db.collection("users").insertOne(newMessage);

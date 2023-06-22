@@ -800,6 +800,7 @@ https://www.youtube.com/watch?v=K6pwjJ5h0Gg&ab_channel=Udacity
 ## Tool
 
 - [Next-Auth](https://next-auth.js.org/)
+- - [Learn video](https://www.youtube.com/watch?v=EFucgPdjeNg&ab_channel=FullStackNiraj)
 
 ---
 
