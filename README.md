@@ -796,3 +796,13 @@ https://github.com/puddlejumper26/udemy-nextjs/commit/87728fef7fe9f5bef96d763eed
 - - 如果正确，发送回所需要的信息
 
 https://www.youtube.com/watch?v=K6pwjJ5h0Gg&ab_channel=Udacity
+
+## Tool
+
+- [Next-Auth](https://next-auth.js.org/)
+
+---
+
+[UP_TO_TOP](https://github.com/puddlejumper26/udemy-nextjs#guide)
+
+---
