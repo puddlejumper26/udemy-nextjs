@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { signIn } from "next-auth/client";
+import { useRouter } from "next/router";
 
 import classes from "./auth-form.module.css";
 
@@ -27,6 +28,7 @@ function AuthForm() {
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const router = useRouter();
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
@@ -46,6 +48,14 @@ function AuthForm() {
         password: enteredPassword,
       });
       console.log("AuthForm result - ", result);
+
+      if (!result.error) {
+        // 一般不同下面这种方法，因为会重置整个页面，lose all states, 一般用于 initial page load
+        // window.location.href =
+        //Perform a client-side navigation to the provided route
+        //without adding a new entry into the browser’s history stack
+        router.replace("/profile");
+      }
     } else {
       try {
         // console.log("Entering-" + enteredEmail);
