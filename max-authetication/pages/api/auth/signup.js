@@ -2,7 +2,9 @@ import { MongoClient } from "mongodb";
 import { hashPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
 
+// when press Create Account button
 async function handler(req, res) {
+  console.log("signup --- handler -- req--", req.body.password);
   if (req.method === "POST") {
     const { email, password } = req.body;
 
