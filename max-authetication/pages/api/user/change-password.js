@@ -1,9 +1,9 @@
 import { getSession } from "next-auth/client";
-import { connectToDatabase } from "../../lib/db";
-import { hashPassword } from "../../lib/auth";
+import { connectToDatabase } from "../../../lib/db";
+import { hashPassword, verifyPassword } from "../../../lib/auth";
 
 async function handler(req, res) {
-  console.log("change-password --- handler - req --", req);
+  // console.log("change-password --- handler - req --", req);
   if (req.method !== "PATCH") {
     return;
   }
@@ -19,6 +19,9 @@ async function handler(req, res) {
   const userEmail = session.user.email;
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
+  console.log("change-password ---oldPassword --", oldPassword);
+  console.log("change-password ---newPassword --", newPassword);
+  console.log("change-password ---userEmail --", userEmail);
 
   const client = await connectToDatabase();
   const userCollection = client.db().collection("users");
@@ -30,8 +33,9 @@ async function handler(req, res) {
     throw new Error("No User Found");
     return;
   }
-
-  const passwordEqual = await verifyPassword(oldPassword, user.password);
+  const currentPassword = user.password;
+  console.log("change-password ---currentPassword --", currentPassword);
+  const passwordEqual = await verifyPassword(oldPassword, currentPassword);
 
   if (!passwordEqual) {
     res.status(422).json({ message: "Input is not correct!" });
